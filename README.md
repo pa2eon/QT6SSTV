@@ -5,7 +5,7 @@ The QSSTV repro from ON4QZ is used as base for this ' QT 6 update' version.<br>
 So the main copyrights are from ON4QZ<br>
 This repro is to give a fresh start in QT6 of the great QSSTV programm who was written based on QT5.<p>
 
-The intention of this repro is to addon more functions on the 'old' QSSTV program.<br>
+The intention of this repro is to addon more functions on the QSSTV version 9.5.11.<br>
 The first step is made - compile the code in QT6 and clean the code as most possible<p>
 
 NOTE !!<br>
