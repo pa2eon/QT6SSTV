@@ -10,4 +10,7 @@ The first step is made - compile the code in QT6<p>
 NOTE !!<br>
 ==>> ALL THE CREDITS ARE MADE FOR ON4QZ <<==<p>
 It is possible that this 'new' repro will be merged later on back again to the original QSSTV !
+  
+To Compile this repro - place the directory 'documentation' IN the src directory.
+This will be changed later.
 
