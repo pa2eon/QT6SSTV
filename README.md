@@ -11,5 +11,9 @@ The first step is made - compile the code in QT6 and clean the code as most poss
 NOTE !!<br>
 
 Their is an documents folder inside the 'src' folder - this folder is in the *.pro file added.<br>
-Changes will be made later, also the HTML files to bring the documents online.
+Changes will be made later, also the HTML files to bring the documents online.<p>
+
+The folder 'manual_html' is the original html (webpages) manual of vs. 9.5 of QSSTV - copyrights of ON4QZ<br>
+
+
  
