@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>993</width>
+    <width>742</width>
     <height>651</height>
    </rect>
   </property>
@@ -26,7 +26,6 @@
    <font>
     <family>Ubuntu Mono</family>
     <pointsize>9</pointsize>
-    <weight>50</weight>
     <italic>false</italic>
     <bold>false</bold>
    </font>
@@ -239,8 +238,16 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <family>Ubuntu Mono</family>
+         <pointsize>10</pointsize>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="sstvTab">
         <attribute name="title">
@@ -941,6 +948,11 @@ You usually only get a partial list due to timing, internet speeds, and the send
           </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QWidget" name="raptorTab">
+        <attribute name="title">
+         <string>RaptorQ</string>
+        </attribute>
        </widget>
       </widget>
      </item>
