@@ -5,9 +5,9 @@
 #include <QCursor>
 
 
-const QString MAJORVERSION  = "9.5";
+const QString MAJORVERSION  = "10.0";  // Start fresh number for QT 6.5 -> 10.0
 const QString CONFIGVERSION = "9.0";
-const QString MINORVERSION  = ".11";
+const QString MINORVERSION  = ".00";
 const QString LOGVERSION = ("qsstv."+MAJORVERSION+MINORVERSION+".log");
 const QString ORGANIZATION = "ON4QZ";
 const QString APPLICATION  = ("qsstv_" +CONFIGVERSION);
