@@ -11,7 +11,7 @@
 #include <QDateTime>
 #include <QByteArray>
 #include <QVector>
-#include "appdefs.h"
+//#include "appdefs.h"    Temp removed in code not used elsewhere 08-05-2023
 #include "hybridcrypt.h"
 
 class ftpFunctions;
@@ -70,12 +70,14 @@ struct dataPacket
   unsigned int advance(int numBytes)
   {
     ba.remove(0,numBytes);
-    return ba.count();
+    //return ba.count();
+    return ba.size();
   }
   unsigned int chop(int numBytes)
   {
     ba.chop(numBytes);
-    return ba.count();
+    //return ba.count();
+    return ba.size();
   }
 
 };
