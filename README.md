@@ -1,5 +1,7 @@
 # QT6SSTV
-QT6 QSSTV - migration of the QSSTV code to QT6 
+QT6 QSSTV - migration of the QSSTV code to QT6 <p>
+
+<b>!! For more info cleaning the software see the Wiki tab !!</b><p>
 
 The QSSTV repro from ON4QZ is used as base for this ' QT 6 update' version.<br>
 So the main copyrights are from ON4QZ<br>
