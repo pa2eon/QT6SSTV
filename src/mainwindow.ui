@@ -64,7 +64,7 @@
         </font>
        </property>
        <attribute name="title">
-        <string>Ontvangen</string>
+        <string>Receive</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
@@ -89,7 +89,7 @@
       </widget>
       <widget class="QWidget" name="txTab">
        <attribute name="title">
-        <string>Zenden</string>
+        <string>Transmit</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="spacing">

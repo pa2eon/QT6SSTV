@@ -408,7 +408,7 @@ void mainWindow::slotDocumentation()
 void mainWindow::slotAboutQSSTV()
 {
   QString temp=tr("QSSTV\nVersion: ") + MAJORVERSION + MINORVERSION;
-  temp += "\n(c) 2000-2019 -- Johan Maes - ON4QZ\n HAMDRM Software based on RX/TXAMADRM\n from PA0MBO\n RaptorQ software managed by PA2EON";
+  temp += "\n(c) 2000-2019 -- Johan Maes - ON4QZ\n HAMDRM Software based on RX/TXAMADRM\n from PA0MBO\n 2023 -- 1st code cleaning by PA2EON";
   QMessageBox::about(this,tr("About..."),temp);
 
 }
