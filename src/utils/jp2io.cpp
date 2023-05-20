@@ -495,7 +495,8 @@ QByteArray jp2IO::encode(QImage qimage, QImage &newImage,int &fileSize, int comp
   if(fi.open(QIODevice::ReadOnly))
     {
       byteArray=fi.readAll();
-      fileSize=byteArray.count();
+      /* fileSize=byteArray.count(); changed by PA2EON */
+      fileSize=byteArray.size();
     }
   fi.close();
   check(fn);
