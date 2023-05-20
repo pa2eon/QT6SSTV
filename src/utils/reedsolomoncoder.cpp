@@ -77,7 +77,8 @@ bool reedSolomonCoder::decode(QByteArray &ba,QString fn,QString &newFileName,QBy
       tr_buf=tr_buf.leftJustified(bep_size*RSBSIZE,'\0');
     }
 
-  int rest=tr_buf.count()%64;
+  /* int rest=tr_buf.count()%64; changed by PA2EON */
+  int rest=tr_buf.size()%64;
   if(rest!=0)
     {
       tr_buf=tr_buf.leftJustified(bep_size*RSBSIZE+(64-rest),'\0');
@@ -99,11 +100,13 @@ bool reedSolomonCoder::decode(QByteArray &ba,QString fn,QString &newFileName,QBy
   init_rs(rs_dsize);
   // setup erasure info
   numMissing=0;
-  if(erasuresArray.count()>=2)  // we have erasure positions
+  /* if(erasuresArray.count()>=2)  // we have erasure positions changed by PA2EON */
+  if(erasuresArray.size()>=2)  // we have erasure positions
     {
       totalSegments=erasuresArray.at(0);
       segmentLength=erasuresArray.at(1);
-      numMissing=erasuresArray.count()-2;
+      /* numMissing=erasuresArray.count()-2; changed by PA2EON */
+      numMissing=erasuresArray.size()-2;
       if(zeroPositions) delete zeroPositions;
       if(newZeroPositions) delete newZeroPositions;
       zeroPositions=new int[segmentLength*(totalSegments+1)];
