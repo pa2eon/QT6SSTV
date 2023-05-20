@@ -30,6 +30,7 @@
 #include <QSplashScreen>
 #include <QMessageBox>
 #include <QApplication>
+#include <QDebug>               // Added by PA2EON
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -466,7 +467,8 @@ int  rigControl::rawCommand(QByteArray ba)
       // we need to send this as a command string
       if(additionalCommandHex)
         {
-          for(i=0;i<ba.count();i++)
+          /* for(i=0;i<ba.count();i++) changed by PA2EON */
+          for(i=0;i<ba.size();i++)
             {
 
               command+="\\0x";
@@ -480,12 +482,14 @@ int  rigControl::rawCommand(QByteArray ba)
 
       command+="\n";
       cmdBa=command.toLatin1();
-      result=write_block(&rs->rigport,cmdBa.constData(), cmdBa.count());
+      /* result=write_block(&rs->rigport,cmdBa.constData(), cmdBa.count()); changed by PA2EON */
+      result=write_block(&rs->rigport,cmdBa.constData(), cmdBa.size());
 
     }
   else
     {
-      result=write_block(&rs->rigport,ba.constData(), ba.count());
+      /* result=write_block(&rs->rigport,ba.constData(), ba.count()); changed by PA2EON */
+      result=write_block(&rs->rigport,ba.constData(), ba.size());
     }
   read_block(&rs->rigport,rxBuffer,99);
   return result;
