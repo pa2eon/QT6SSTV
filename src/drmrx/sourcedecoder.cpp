@@ -238,7 +238,8 @@ bool sourceDecoder::setupDataPacket(QByteArray ba)
   if(header&0x40)
     {
       currentDataPacket.crcFlag=true;
-      crc16_bytewise (&checksum,(unsigned char *)currentDataPacket.ba.data(),currentDataPacket.ba.count());
+      /* crc16_bytewise (&checksum,(unsigned char *)currentDataPacket.ba.data(),currentDataPacket.ba.count()); changed by PA2EON  1 - */
+      crc16_bytewise (&checksum,(unsigned char *)currentDataPacket.ba.data(),currentDataPacket.ba.length());
       if (fabs (checksum) <= DBL_EPSILON)
         {
           currentDataPacket.crcOK=true;
@@ -276,7 +277,8 @@ bool sourceDecoder::setupDataPacket(QByteArray ba)
     }
   currentDataPacket.segmentSize=(((unsigned char)(currentDataPacket.ba.at(0)) & 0x1F))*256+ ((unsigned char)currentDataPacket.ba.at(1));
   currentDataPacket.advance(2);
-  currentDataPacket.lenght=currentDataPacket.ba.count();
+  /* currentDataPacket.lenght=currentDataPacket.ba.count(); Changed by PA2EON */
+  currentDataPacket.lenght=currentDataPacket.ba.length();
   currentDataPacket.log();
   return true;
 }
@@ -340,7 +342,8 @@ bool sourceDecoder::addHeaderSegment()
   // The header core is followed by a number of parameter blocks
   // the first byte of every parameter block contains a 2-bits PLI (B7 and B6) indicating the type of parameter block.
 
-  while(currentDataPacket.ba.count())
+  /* while(currentDataPacket.ba.count()) changed by PA2EON */
+  while(currentDataPacket.ba.size())
     {
       PLI=dataPtr[0]>>6;
       paramID=dataPtr[0]&0x3F;
@@ -427,7 +430,8 @@ void sourceDecoder::addDataSegment()
     {
       tbPtr->defaultSegmentSize=currentDataPacket.segmentSize;
     }
-  for(i=tbPtr->dataSegmentPtrList.count();i<=currentDataPacket.segmentNumber;i++)
+  /* for(i=tbPtr->dataSegmentPtrList.count();i<=currentDataPacket.segmentNumber;i++) changed by PA2EON */
+  for(i=tbPtr->dataSegmentPtrList.size();i<=currentDataPacket.segmentNumber;i++)
     {
       tbPtr->dataSegmentPtrList.append(new dataSegment(tbPtr->defaultSegmentSize));
     }
@@ -466,7 +470,8 @@ void sourceDecoder::writeData(transportBlock *tbPtr)
   erasureList.append(tbPtr->totalSegments);
   erasureList.append(tbPtr->defaultSegmentSize);
   addToLog("Write data",LOGDRMSRC);
-  for(i=0;i<tbPtr->dataSegmentPtrList.count();i++)
+  /* for(i=0;i<tbPtr->dataSegmentPtrList.count();i++) changed by PA2EON */
+  for(i=0;i<tbPtr->dataSegmentPtrList.size();i++)
     {
       if(!tbPtr->dataSegmentPtrList.at(i)->hasData())
         {
@@ -480,7 +485,8 @@ void sourceDecoder::writeData(transportBlock *tbPtr)
     }
   tbPtr->segmentsReceived=0;
   drmBlockList.clear();
-  for(i=0;i<tbPtr->dataSegmentPtrList.count();i++)
+  /* for(i=0;i<tbPtr->dataSegmentPtrList.count();i++) changed by PA2EON */
+  for(i=0;i<tbPtr->dataSegmentPtrList.size();i++)
     {
       if(tbPtr->dataSegmentPtrList.at(i)->hasData())
         {
@@ -530,7 +536,8 @@ void sourceDecoder::saveImage(transportBlock *tbPtr)
         {
           addToLog(QString("Hybrid filename %1, attempt %2").arg(tbPtr->fileName).arg(tbPtr->retrieveTries+1),LOGALL);
           downloadF=rxDRMImagesPath+"/"+tbPtr->fileName;
-          for(i=0;i<tbPtr->dataSegmentPtrList.count();i++)
+          /* for(i=0;i<tbPtr->dataSegmentPtrList.count();i++) changed by PA2EON */
+          for(i=0;i<tbPtr->dataSegmentPtrList.size();i++)
             {
               hybridBa+=tbPtr->dataSegmentPtrList.at(i)->data;
             }
@@ -713,7 +720,8 @@ QList <bsrBlock> *sourceDecoder::getBSR()
   transportBlock *tbPtr;
   bsrList.clear();
 
-  for(i=0;i<transportBlockPtrList.count();i++)
+  /* for(i=0;i<transportBlockPtrList.count();i++) changed by PA2EON */
+  for(i=0;i<transportBlockPtrList.size();i++)
     {
       tbPtr=transportBlockPtrList.at(i);
       if(tbPtr->alreadyReceived) continue;
@@ -732,7 +740,8 @@ bool sourceDecoder::storeBSR(transportBlock *tb, bool compat)
   erasureList.clear();
   erasureList.append(tb->totalSegments);
   erasureList.append(tb->defaultSegmentSize);
-  for(i=0;i<tb->dataSegmentPtrList.count();i++)
+  /* for(i=0;i<tb->dataSegmentPtrList.count();i++) changed by PA2EON */
+  for(i=0;i<tb->dataSegmentPtrList.size();i++)
     {
       if(!tb->dataSegmentPtrList.at(i)->hasData())
         {
@@ -740,7 +749,8 @@ bool sourceDecoder::storeBSR(transportBlock *tb, bool compat)
         }
     }
   tb->baBSR.clear();
-  if(erasureList.count()<3) return false; //erasurelist has already totalSegments and defaultSegmentSize
+  /* if(erasureList.count()<3) return false; //erasurelist has already totalSegments and defaultSegmentSize changed by PA2EON */
+  if(erasureList.size()<3) return false; //erasurelist has already totalSegments and defaultSegmentSize
   tb->baBSR.append(QString::number(tb->transportID).toLatin1().data());
   tb->baBSR.append("\n");
   tb->baBSR.append("H_OK\n");
@@ -751,7 +761,8 @@ bool sourceDecoder::storeBSR(transportBlock *tb, bool compat)
 
   prevErasure=erasureList.at(2);
   needsFiller=false;
-  for(i=3;i<erasureList.count();i++) //skip
+  /* for(i=3;i<erasureList.count();i++) //skip changed by PA2EON */
+  for(i=3;i<erasureList.size();i++) //skip
     {
       if(((prevErasure+1)==erasureList.at(i))&&(compat))
         {
@@ -775,7 +786,8 @@ bool sourceDecoder::storeBSR(transportBlock *tb, bool compat)
       tb->baBSR.append(QString::number(-1).toLatin1().data());
       tb->baBSR.append("\n");
       needsFiller=false;
-      tb->baBSR.append(QString::number(erasureList.at(erasureList.count()-1)).toLatin1().data());
+      /* tb->baBSR.append(QString::number(erasureList.at(erasureList.count()-1)).toLatin1().data()); changed by PA2EON */
+      tb->baBSR.append(QString::number(erasureList.at(erasureList.size()-1)).toLatin1().data());
       tb->baBSR.append("\n");
     }
   tb->baBSR.append("-99\n");
@@ -796,7 +808,8 @@ transportBlock *sourceDecoder::getTransporPtr(unsigned short tId,bool create)
   int i;
   rxDRMStatusEvent *stce;
   bool found=false;
-  for(i=0;i<transportBlockPtrList.count();i++)
+  /* for(i=0;i<transportBlockPtrList.count();i++) changed by PA2EON */
+  for(i=0;i<transportBlockPtrList.size();i++)
     {
       if(transportBlockPtrList.at(i)->transportID==tId)
         {
@@ -812,12 +825,14 @@ transportBlock *sourceDecoder::getTransporPtr(unsigned short tId,bool create)
       drmBlockList.clear();
       stce= new rxDRMStatusEvent("");
       QApplication::postEvent( dispatcherPtr, stce );  // Qt will delete it when done
-      if(transportBlockPtrList.count()>=MAXTRANSPORTLISTS)
+      /* if(transportBlockPtrList.count()>=MAXTRANSPORTLISTS) changed by PA2EON */
+      if(transportBlockPtrList.size()>=MAXTRANSPORTLISTS)
         {
           //delete the oldest
           transportBlockPtrList.removeFirst();
         }
-      for(i=0;i<transportBlockPtrList.count();)
+      /* for(i=0;i<transportBlockPtrList.count();) changed by PA2EON */
+      for(i=0;i<transportBlockPtrList.size();)
         {
           if(transportBlockPtrList.at(i)->fileName=="bsr.bin")
             {
@@ -850,7 +865,8 @@ transportBlock *sourceDecoder::getTransporPtr(unsigned short tId,bool create)
 void sourceDecoder::removeTransporPtr(transportBlock * ptr)
 {
   int i;
-  for(i=0;i<transportBlockPtrList.count();i++)
+  /* for(i=0;i<transportBlockPtrList.count();i++) changed by PA2EON */
+  for(i=0;i<transportBlockPtrList.size();i++)
     {
       if(transportBlockPtrList.at(i)==ptr)
         {
