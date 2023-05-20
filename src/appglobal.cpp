@@ -6,10 +6,10 @@
 
 
 const QString MAJORVERSION  = "10.0";  // Start fresh number for QT 6.5 -> 10.0
-const QString CONFIGVERSION = "9.0";
+const QString CONFIGVERSION = "10.0";
 const QString MINORVERSION  = ".00";
 const QString LOGVERSION = ("qsstv."+MAJORVERSION+MINORVERSION+".log");
-const QString ORGANIZATION = "ON4QZ";
+const QString ORGANIZATION = "PA2EON";
 const QString APPLICATION  = ("qsstv_" +CONFIGVERSION);
 const QString qsstvVersion=QString("QSSTV " + MAJORVERSION+MINORVERSION);
 const QString APPNAME=QString("QSSTV");
