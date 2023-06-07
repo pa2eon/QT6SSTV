@@ -18,7 +18,8 @@ Changes will be made later, also the HTML files to bring the documents online.<p
 The folder 'manual_html' is the original html (webpages) manual of vs. 9.5 of QSSTV - copyrights of ON4QZ<p>
 The next steps are the needed software packages inside your OS ( Linux Mint / Debian )<p>
 
-sudo apt-get install doxygen gmake6 libxcb*-dev libxcb-xinerama0 libxkbcommon-x11-0 libxkbcommon0 libxcb-xv0-dev<br>
+sudo apt-get install doxygen gmake6 libxcb*-dev libxcb-xinerama0 libxkbcommon-x11-0 <br>
+sudo apt-get install libxkbcommon0 libxcb-xv0-dev<br>
 sudo apt-get install libv4l-dev libopenjp2-dev libpulse-dev libasound2-dev libhamlib++-dev hamlib-dev<br>
 sudo apt-get install libfftw3-dev  <p>
 
