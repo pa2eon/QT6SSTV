@@ -23,10 +23,11 @@ sudo apt-get install libxkbcommon0 libxcb-xv0-dev<br>
 sudo apt-get install libv4l-dev libopenjp2-dev libpulse-dev libasound2-dev libhamlib++-dev hamlib-dev<br>
 sudo apt-get install libfftw3-dev  <p>
 
-After installing the full QT6 offline package .. then follow the last instruction:<br>
+After installing the full QT6 offline package (use NOT the latest QT creator version 6.5 ) Version 6.4.2 at<br>
+    the install selection .. then follow the last instruction:<br>
 I mean:<p>
 
-    export export PATH=/opt/Qt/6.x.x/gcc_64/bin/:$PATH => 6.x.x is for example 6.5.0
+    export export PATH=/opt/Qt/6.x.x/gcc_64/bin/:$PATH => 6.x.x is for example 6.4.2
     ln -s /opt/Qt/6.x.x/gcc_64/bin/qmake /usr/bin/qmake
 
 When now testing the qmake --version .. you seen that it is going to qt 6<p>
